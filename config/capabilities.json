@@ -1,0 +1,17 @@
+{
+  "platformName": "Android",
+  "platformVersion": "13",
+  "deviceName": "Android Device",
+  "udid": "",
+  "automationName": "UiAutomator2",
+  "app": "/path/to/muatrans.apk",
+  "appPackage": "com.muatmuat.muatrans",
+  "appActivity": "com.muatmuat.muatrans.MainActivity",
+  "noReset": false,
+  "fullReset": false,
+  "unicodeKeyboard": true,
+  "resetKeyboard": true,
+  "autoGrantPermissions": true,
+  "newCommandTimeout": 60000,
+  "connectHardwareKeyboard": false
+}
