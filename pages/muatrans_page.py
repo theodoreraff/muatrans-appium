@@ -254,14 +254,22 @@ class MuatransPage:
         )
         truck_type.click()
 
-        # Pilih opsi Medium Truk 4 x 2 (Rigid)
-        medium_truck = self.wait.until(
-            EC.element_to_be_clickable((
-                AppiumBy.ANDROID_UIAUTOMATOR,
-                'new UiSelector().description("Medium Truk 4 x 2 (Rigid)\nRp1.426.375\nEstimasi Kapasitas\n12.5 ton\nEstimasi Dimensi (p x l x t)\n5.5 x 2.4 x 2.0 m")'
+        # Temukan label "Rekomendasi Truk Sesuai Muatan"
+        recommended_label = self.wait.until(
+            EC.presence_of_element_located((
+                AppiumBy.XPATH, '//android.view.View[@content-desc="Rekomendasi Truk Sesuai Muatan"]'
             ))
         )
-        medium_truck.click()
+
+        # Pilih elemen truk pertama di bawah label tersebut
+        recommended_truck = self.wait.until(
+            EC.element_to_be_clickable((
+                AppiumBy.XPATH,
+                '(//android.view.View[@content-desc="Rekomendasi Truk Sesuai Muatan"]/following-sibling::android.view.View)[1]'
+            ))
+        )
+
+        recommended_truck.click()
 
         # Klik tombol "Lanjut"
         lanjut_button = self.wait.until(
