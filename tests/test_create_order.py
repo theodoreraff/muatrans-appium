@@ -6,3 +6,4 @@ def test_create_order(driver):
     muat.set_instant_loading_time()
     muat.input_loading_location()
     muat.input_unloading_location()
+    muat.input_goods_information()
