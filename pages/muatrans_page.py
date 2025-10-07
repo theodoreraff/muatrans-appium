@@ -162,3 +162,64 @@ class MuatransPage:
             EC.element_to_be_clickable((AppiumBy.ACCESSIBILITY_ID, "Simpan"))
         )
         save_button.click()
+
+    def input_goods_information(self, weight="25"):
+        print("Filling Goods Information...")
+
+        # Pilih Kategori Barang (instance 19)
+        category_item = self.wait.until(
+            EC.element_to_be_clickable((
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                'new UiSelector().className("android.view.View").instance(19)'
+            ))
+        )
+        category_item.click()
+
+        # Tap "Barang Jadi"
+        finished_goods = self.wait.until(
+            EC.element_to_be_clickable((AppiumBy.ACCESSIBILITY_ID, "Barang Jadi"))
+        )
+        finished_goods.click()
+
+        # Tap "Padat"
+        solid_type = self.wait.until(
+            EC.element_to_be_clickable((AppiumBy.ACCESSIBILITY_ID, "Padat"))
+        )
+        solid_type.click()
+
+        # Pilih Subkategori (instance 18)
+        subcategory = self.wait.until(
+            EC.element_to_be_clickable((
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                'new UiSelector().className("android.view.View").instance(18)'
+            ))
+        )
+        subcategory.click()
+
+        # Tap "Mebel"
+        furniture = self.wait.until(
+            EC.element_to_be_clickable((AppiumBy.ACCESSIBILITY_ID, "Mebel"))
+        )
+        furniture.click()
+
+        # Tap field berat muatan (instance 17)
+        weight_field = self.wait.until(
+            EC.element_to_be_clickable((
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                'new UiSelector().className("android.widget.EditText").instance(0)'
+            ))
+        )
+        weight_field.click()
+
+        # Input berat muatan
+        weight_input = self.wait.until(
+            EC.element_to_be_clickable((AppiumBy.CLASS_NAME, "android.widget.EditText"))
+        )
+        weight_input.click()
+        weight_input.send_keys(weight)
+
+        # Tap 'Simpan'
+        save_button = self.wait.until(
+            EC.element_to_be_clickable((AppiumBy.ACCESSIBILITY_ID, "Simpan"))
+        )
+        save_button.click()
