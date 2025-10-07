@@ -281,72 +281,74 @@ class MuatransPage:
             'percent': 0.6
         })
 
-    def complete_order_details(self, description="Lorem ipsum dolor amet"):
+    def complete_order_details(self, description="Lorem ipsum dolor amet", payment_method="BCA Virtual Account"):
         print("Completing order details...")
 
-        # Klik "Foto Utama"
-        photo_button = self.wait.until(
+        # Tap "Foto Utama"
+        main_photo = self.wait.until(
             EC.element_to_be_clickable((AppiumBy.ACCESSIBILITY_ID, "Foto Utama"))
         )
-        photo_button.click()
+        main_photo.click()
 
-        # Pilih "Ambil dari Galeri" (ImageView instance(1))
-        gallery_button = self.wait.until(
+        # Pilih gambar dari galeri
+        gallery_image = self.wait.until(
             EC.element_to_be_clickable((
                 AppiumBy.ANDROID_UIAUTOMATOR,
                 'new UiSelector().className("android.widget.ImageView").instance(1)'
             ))
         )
-        gallery_button.click()
+        gallery_image.click()
 
-        # Pilih thumbnail image (instance 8)
-        image_thumbnail = self.wait.until(
+        thumbnail = self.wait.until(
             EC.element_to_be_clickable((
                 AppiumBy.ANDROID_UIAUTOMATOR,
                 'new UiSelector().resourceId("com.google.android.providers.media.module:id/icon_thumbnail").instance(8)'
             ))
         )
-        image_thumbnail.click()
+        thumbnail.click()
 
-        # Klik "Crop"
+        # Crop image
         crop_button = self.wait.until(
             EC.element_to_be_clickable((AppiumBy.ACCESSIBILITY_ID, "Crop"))
         )
         crop_button.click()
 
-        # Klik "Lanjut"
+        # Lanjut ke form detail
         lanjut_button = self.wait.until(
             EC.element_to_be_clickable((AppiumBy.ACCESSIBILITY_ID, "Lanjut"))
         )
         lanjut_button.click()
 
-        # Isi deskripsi muatan
-        description_field = self.wait.until(
-            EC.element_to_be_clickable((AppiumBy.CLASS_NAME, "android.widget.EditText"))
+        # Tunggu dan isi deskripsi muatan
+        self.wait.until(
+            EC.presence_of_element_located((AppiumBy.CLASS_NAME, "android.widget.EditText"))
         )
+        description_field = self.driver.find_element(AppiumBy.CLASS_NAME, "android.widget.EditText")
         description_field.click()
         description_field.send_keys(description)
 
-        # Klik "Pilih" pada metode pembayaran
-        pilih_payment = self.wait.until(
+        # Scroll down to payment method
+        self._scroll_down_small()
+
+        # Pilih metode pembayaran
+        pilih_button = self.wait.until(
             EC.element_to_be_clickable((AppiumBy.ACCESSIBILITY_ID, "Pilih"))
         )
-        pilih_payment.click()
+        pilih_button.click()
 
-        # Pilih "BCA Virtual Account"
-        bca_payment = self.wait.until(
-            EC.element_to_be_clickable((AppiumBy.ACCESSIBILITY_ID, "BCA Virtual Account"))
+        payment_option = self.wait.until(
+            EC.element_to_be_clickable((AppiumBy.ACCESSIBILITY_ID, payment_method))
         )
-        bca_payment.click()
+        payment_option.click()
 
-        # Klik "Simpan"
+        # Tap "Simpan"
         simpan_button = self.wait.until(
             EC.element_to_be_clickable((AppiumBy.ACCESSIBILITY_ID, "Simpan"))
         )
         simpan_button.click()
 
-        # Klik "Lanjut"
-        final_lanjut = self.wait.until(
+        # Tap "Lanjut"
+        lanjut_button = self.wait.until(
             EC.element_to_be_clickable((AppiumBy.ACCESSIBILITY_ID, "Lanjut"))
         )
-        final_lanjut.click()
+        lanjut_button.click()
