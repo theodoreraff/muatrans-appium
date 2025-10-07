@@ -280,3 +280,31 @@ class MuatransPage:
             'direction': 'down',
             'percent': 0.6
         })
+
+    def complete_order_details(self, description="Lorem ipsum dolor amet"):
+        print("Completing order details...")
+
+        # Klik "Foto Utama"
+        photo_button = self.wait.until(
+            EC.element_to_be_clickable((AppiumBy.ACCESSIBILITY_ID, "Foto Utama"))
+        )
+        photo_button.click()
+
+        # Pilih "Ambil dari Galeri" (ImageView instance(1))
+        gallery_button = self.wait.until(
+            EC.element_to_be_clickable((
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                'new UiSelector().className("android.widget.ImageView").instance(1)'
+            ))
+        )
+        gallery_button.click()
+
+        # Pilih thumbnail image (instance 8)
+        image_thumbnail = self.wait.until(
+            EC.element_to_be_clickable((
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                'new UiSelector().resourceId("com.google.android.providers.media.module:id/icon_thumbnail").instance(8)'
+            ))
+        )
+        image_thumbnail.click()
+
