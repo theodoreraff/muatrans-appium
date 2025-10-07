@@ -1,6 +1,7 @@
 from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from appium.webdriver.common.touch_action import TouchAction
 
 class MuatransPage:
     def __init__(self, driver):
@@ -227,6 +228,9 @@ class MuatransPage:
     def select_truck_information(self):
         print("Selecting Truck Information...")
 
+        # Scroll down slightly to reveal Armada section
+        self._scroll_down_small()
+
         # Pilih Jenis Armada (instance 18)
         armada_type = self.wait.until(
             EC.element_to_be_clickable((
@@ -266,3 +270,13 @@ class MuatransPage:
         )
         lanjut_button.click()
 
+    def _scroll_down_small(self):
+        """Scroll sedikit ke bawah untuk memastikan elemen di bawah layar terlihat."""
+        self.driver.execute_script("mobile: scrollGesture", {
+            'left': 100,
+            'top': 500,
+            'width': 300,
+            'height': 800,
+            'direction': 'down',
+            'percent': 0.6
+        })
