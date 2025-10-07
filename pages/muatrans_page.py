@@ -1,7 +1,6 @@
 from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from appium.webdriver.common.touch_action import TouchAction
 
 class MuatransPage:
     def __init__(self, driver):
@@ -352,3 +351,14 @@ class MuatransPage:
             EC.element_to_be_clickable((AppiumBy.ACCESSIBILITY_ID, "Lanjut"))
         )
         lanjut_button.click()
+
+        # Scroll to reveal 'Pesan Sekarang'
+        self._scroll_down_small()
+
+        # Tap "Pesan Sekarang"
+        pesan_button = self.wait.until(
+            EC.element_to_be_clickable((AppiumBy.ACCESSIBILITY_ID, "Pesan Sekarang"))
+        )
+        pesan_button.click()
+
+
