@@ -112,3 +112,53 @@ class MuatransPage:
             EC.element_to_be_clickable((AppiumBy.ACCESSIBILITY_ID, "Simpan"))
         )
         save_button.click()
+
+    def input_unloading_location(self, location="Atlas Beach", pic_name="QA Tester", pic_phone="089912341234"):
+        print("Filling Unloading Location (Lokasi Bongkar)...")
+
+        # Tap input field 'Masukkan Lokasi Bongkar'
+        unload_field = self.wait.until(
+            EC.element_to_be_clickable((AppiumBy.ACCESSIBILITY_ID, "Masukkan Lokasi Bongkar"))
+        )
+        unload_field.click()
+
+        # Tap search box
+        search_box = self.wait.until(
+            EC.element_to_be_clickable((AppiumBy.CLASS_NAME, "android.widget.EditText"))
+        )
+        search_box.click()
+        search_box.send_keys(location)
+
+        # Select suggestion based on input
+        suggestion = self.wait.until(
+            EC.presence_of_element_located((AppiumBy.ACCESSIBILITY_ID,
+                                            "Atlas Beach Club, Jalan Pantai Berawa, Tibubeneng, Kabupaten Badung, Bali, Indonesia"
+                                            ))
+        )
+        suggestion.click()
+
+        # Input Nama PIC (EditText instance(1))
+        pic_name_field = self.wait.until(
+            EC.element_to_be_clickable((
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                'new UiSelector().className("android.widget.EditText").instance(1)'
+            ))
+        )
+        pic_name_field.click()
+        pic_name_field.send_keys(pic_name)
+
+        # Input No HP PIC (EditText instance(2))
+        pic_phone_field = self.wait.until(
+            EC.element_to_be_clickable((
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                'new UiSelector().className("android.widget.EditText").instance(2)'
+            ))
+        )
+        pic_phone_field.click()
+        pic_phone_field.send_keys(pic_phone)
+
+        # Tap 'Simpan'
+        save_button = self.wait.until(
+            EC.element_to_be_clickable((AppiumBy.ACCESSIBILITY_ID, "Simpan"))
+        )
+        save_button.click()
