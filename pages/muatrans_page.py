@@ -223,3 +223,46 @@ class MuatransPage:
             EC.element_to_be_clickable((AppiumBy.ACCESSIBILITY_ID, "Simpan"))
         )
         save_button.click()
+
+    def select_truck_information(self):
+        print("Selecting Truck Information...")
+
+        # Pilih Jenis Armada (instance 18)
+        armada_type = self.wait.until(
+            EC.element_to_be_clickable((
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                'new UiSelector().className("android.view.View").instance(18)'
+            ))
+        )
+        armada_type.click()
+
+        # Pilih "Bak Terbuka"
+        open_truck = self.wait.until(
+            EC.element_to_be_clickable((AppiumBy.ACCESSIBILITY_ID, "Bak Terbuka"))
+        )
+        open_truck.click()
+
+        # Pilih Jenis Truk (instance 20)
+        truck_type = self.wait.until(
+            EC.element_to_be_clickable((
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                'new UiSelector().className("android.view.View").instance(20)'
+            ))
+        )
+        truck_type.click()
+
+        # Pilih opsi Medium Truk 4 x 2 (Rigid)
+        medium_truck = self.wait.until(
+            EC.element_to_be_clickable((
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                'new UiSelector().description("Medium Truk 4 x 2 (Rigid)\nRp1.426.375\nEstimasi Kapasitas\n12.5 ton\nEstimasi Dimensi (p x l x t)\n5.5 x 2.4 x 2.0 m")'
+            ))
+        )
+        medium_truck.click()
+
+        # Klik tombol "Lanjut"
+        lanjut_button = self.wait.until(
+            EC.element_to_be_clickable((AppiumBy.ACCESSIBILITY_ID, "Lanjut"))
+        )
+        lanjut_button.click()
+
