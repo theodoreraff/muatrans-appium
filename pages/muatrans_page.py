@@ -63,3 +63,52 @@ class MuatransPage:
             EC.element_to_be_clickable((AppiumBy.ACCESSIBILITY_ID, "Simpan"))
         )
         simpan_button.click()
+
+    def input_loading_location(self, location="Graha Airi 101", pic_name="QA Tester", pic_phone="089912341234"):
+        print("Filling Loading Location (Lokasi Muat)...")
+
+        # Tap input field 'Masukkan Lokasi Muat'
+        location_field = self.wait.until(
+            EC.element_to_be_clickable((AppiumBy.ACCESSIBILITY_ID, "Masukkan Lokasi Muat"))
+        )
+        location_field.click()
+
+        # Input location keyword
+        search_box = self.wait.until(
+            EC.presence_of_element_located((AppiumBy.CLASS_NAME, "android.widget.EditText"))
+        )
+        search_box.send_keys(location)
+
+        # Pilih hasil suggestion
+        suggestion = self.wait.until(
+            EC.presence_of_element_located((AppiumBy.ACCESSIBILITY_ID,
+                                            "Graha Airi, Jalan Kedung Doro, RT.001/RW.06, Kedungdoro, Surabaya, Jawa Timur, Indonesia"
+                                            ))
+        )
+        suggestion.click()
+
+        # Input Nama PIC (EditText instance(1))
+        pic_name_field = self.wait.until(
+            EC.element_to_be_clickable((
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                'new UiSelector().className("android.widget.EditText").instance(1)'
+            ))
+        )
+        pic_name_field.click()
+        pic_name_field.send_keys(pic_name)
+
+        # Input No HP PIC (EditText instance(2))
+        pic_phone_field = self.wait.until(
+            EC.element_to_be_clickable((
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                'new UiSelector().className("android.widget.EditText").instance(2)'
+            ))
+        )
+        pic_phone_field.click()
+        pic_phone_field.send_keys(pic_phone)
+
+        # Tap 'Simpan'
+        save_button = self.wait.until(
+            EC.element_to_be_clickable((AppiumBy.ACCESSIBILITY_ID, "Simpan"))
+        )
+        save_button.click()
